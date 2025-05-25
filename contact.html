@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Контакты</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
@@ -14,11 +14,17 @@
     </nav>
   </header>
   <main>
-    <h1>Свяжитесь с нами</h1>
-    <form action="https://formsubmit.co/ВАШ_EMAIL@example.com" method="POST" class="contact-form">
-      <label for="email">Введите ваш email:</label>
-      <input type="email" name="email" placeholder="example@example.com" required />
-      <button type="submit">Подписаться</button>
+    <h1 style="text-align: center;">Свяжитесь с нами</h1>
+    <form action="https://formsubmit.co/ilya.she0607@gmail.com" method="POST" class="contact-form">
+      <!-- Настройки formsubmit -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_subject" value="Новая подписка с сайта">
+
+      <label for="email">Ваш email:</label>
+      <input type="email" name="email" placeholder="example@example.com" required>
+
+      <button type="submit">Отправить</button>
     </form>
   </main>
 </body>
