@@ -1,28 +1,33 @@
 <?php
-// Настройки подключения
-$host = 'localhost'; // или другой адрес сервера
-$dbname = 'id123456_emails_db'; // Имя вашей базы данных
-$username = 'id123456_user';    // Имя пользователя базы данных
-$password = 'your_password';    // Пароль
+$host = 'localhost';
+$dbname = 'id123456_emails_db';
+$username = 'id123456_user';
+$password = 'your_password';
 
 try {
-    // Подключение к БД через PDO
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Проверка данных
     if (isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        $email = $_POST['email'];
+        $email = trim($_POST['email']);
 
-        // Вставка в таблицу
-        $stmt = $pdo->prepare("INSERT INTO subscribers (email) VALUES (:email)");
+        // Защита от повторных записей
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM subscribers WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
-        echo "Спасибо! Ваш email сохранён в базе данных.";
+        if ($stmt->fetchColumn() == 0) {
+            $stmt = $pdo->prepare("INSERT INTO subscribers (email) VALUES (:email)");
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            echo "Спасибо! Ваш email сохранён.";
+        } else {
+            echo "Этот email уже существует в базе.";
+        }
     } else {
-        echo "Неверный email.";
+        echo "Введите корректный email.";
     }
 } catch (PDOException $e) {
-    echo "Ошибка подключения к БД: " . $e->getMessage();
+    echo "Ошибка базы данных: " . $e->getMessage();
 }
 ?>
