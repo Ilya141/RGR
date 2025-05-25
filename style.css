@@ -1,18 +1,19 @@
+/* Основной стиль страницы */
 body {
   font-family: sans-serif;
   padding: 20px;
   margin: 0;
-  background-color: #f9f9f9;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
-header {
-  background-color: #333;
-}
-
+/* Навигационное меню */
 nav {
+  background: #333;
+  padding: 10px;
   display: flex;
   gap: 15px;
-  padding: 10px 20px;
+  justify-content: center;
 }
 
 nav a {
@@ -25,56 +26,52 @@ nav a:hover {
   text-decoration: underline;
 }
 
-main {
-  max-width: 800px;
-  margin: 40px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-h1 {
-  color: #333;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.contact-form input {
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-.contact-form button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.contact-form button:hover {
-  background-color: #005fa3;
-}
-
+/* Адаптивность меню */
 @media (max-width: 600px) {
   nav {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
+}
 
-  main {
-    padding: 20px;
-  }
+/* Стили формы на странице Контакты */
+.contact-form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.contact-form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.contact-form button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #555;
 }
   
